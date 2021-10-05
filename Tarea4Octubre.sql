@@ -36,3 +36,15 @@ select *  from emails
 select e.email 
 from emails e 
 where e.email not like '%@%._%' or e.email like '%god%';
+
+-- Cuales pagos tienen el monto 1.98, 7.98 o 9.98?
+select *
+from payment p
+where p.amount = 1.98 or p.amount = 7.98 or p.amount = 9.98;
+
+--Cuales la suma total pagada por los clientes que tienen una letra A en la segunda posición de su apellido y una W en cualquier lugar después de la A?
+select count(p.amount), c.last_name 
+from payment p join customer c on (p.customer_id = c.customer_id)
+where c.last_name like '_A%W%' and c.last_name not like 'WA%'
+group by c.customer_id;
+
